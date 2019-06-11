@@ -1,0 +1,15 @@
+If you use(include) both the asynchronous and synchronous socket i/o header files then you must do the following:
+
+http://www.setoreaustralia.com/msb8027-two-or-more-files-with-the-name-of-texture-cpp-will-produce-outputs-to-the-same-location/
+
+“When VC++ compiles all the files down it puts them all in the one folder and basically just overwrites the first output file with the second.
+To fix this, you can set it to use the folder name as part of the file output. 
+These instructions were current as of Visual Studio 2013 (Update 3)”
+
+
+Right click your VC++ project, click “Properties”
+Expand “Configuration Properties”
+Expand “C/C++”
+Select “Output Files”
+Select “Object File Name” and change it from “$(IntDir)” to "$(IntDir)$(AssemblyName)\%(RelativeDir)\” or "$(IntDir)$(AssemblyName)\$(Configuration)\%(RelativeDir)\" (preferred)
+That way, the folder path is taken into account and not just the file name.
